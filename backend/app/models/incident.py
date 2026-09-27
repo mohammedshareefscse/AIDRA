@@ -5,15 +5,11 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from backend.app.database.base import Base
 
-from backend.app.api.sos import router as sos_router
-app.include_router(sos_router)
+
 class Incident(Base):
     __tablename__ = "incidents"
 
-    id: Mapped[int] = mapped_column(
-        primary_key=True,
-        index=True,
-    )
+    id: Mapped[int] = mapped_column(primary_key=True, index=True)
 
     title: Mapped[str] = mapped_column(
         String(200),
@@ -57,6 +53,18 @@ class Incident(Base):
         nullable=False,
     )
 
+    risk_score: Mapped[int] = mapped_column(
+        Integer,
+        default=0,
+        nullable=False,
+    )
+
+    risk_level: Mapped[str] = mapped_column(
+        String(20),
+        default="low",
+        nullable=False,
+    )
+
     status: Mapped[str] = mapped_column(
         String(30),
         default="reported",
@@ -80,4 +88,3 @@ class Incident(Base):
         onupdate=datetime.utcnow,
         nullable=False,
     )
-    

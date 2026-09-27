@@ -1,7 +1,3 @@
-cd ~/Documents/projects
-source .venv/bin/activate
-
-cat > backend/app/main.py <<'EOF'
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -51,4 +47,3 @@ def health():
         "status": "healthy",
         "service": "AIDRA API",
     }
-EOF
